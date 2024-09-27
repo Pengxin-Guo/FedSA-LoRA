@@ -104,7 +104,7 @@ class LLMDataset(Dataset):
         df = pd.DataFrame(categories, columns=["category"])
         self.categories = list(pd.Categorical(df["category"]).codes)
         
-        # added by me, save original text data for gsm8k or generation data for Dolly-15k
+        # added by me, save original text data for gsm8k
         self.list_data_dict = list_data_dict  # for gsm8k
 
     def _tokenize_fn(self, strings, tokenizer):
@@ -178,12 +178,6 @@ class LLMDataset(Dataset):
                                      sources_tokenized["input_ids_lens"]):
             label[:source_len] = DefaultToken.IGNORE_INDEX.value
         return dict(input_ids=input_ids, labels=labels)
-    
-    def preprocess_generation(self, sources, targets, tokenizer):
-        # for Dolly-15k
-        input_ids = self._tokenize_fn(sources, tokenizer)["input_ids"]
-        labels = self._tokenize_fn(targets, tokenizer)["input_ids"]
-        return dict(input_ids_generation=input_ids, labels_generation=labels)
 
     def __len__(self):
         return len(self.input_ids)

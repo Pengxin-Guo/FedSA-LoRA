@@ -52,7 +52,6 @@ class GLUETrainer(GeneralTorchTrainer):
                 # across different routines
                 if ctx.cfg.llm.adapter.args[0].get('adapter_method', '') == "vera":
                     # added by me, for VeRA, introduce separate learning rates for the classification head and the adapted layers
-                    # print("For VeRA, set the optimizer to AdamW")
                     vera_params = [param for name, param in ctx.model.named_parameters() if "vera" in name and param.requires_grad]
                     other_params = [param for name, param in ctx.model.named_parameters() if "vera" not in name and param.requires_grad]
                     optimizer_grouped_parameters = [
@@ -61,7 +60,6 @@ class GLUETrainer(GeneralTorchTrainer):
                     ]
                     from transformers import AdamW, get_linear_schedule_with_warmup
                     ctx.optimizer = AdamW(optimizer_grouped_parameters, no_deprecation_warning=True)
-                    # ctx.optimizer = torch.optim.AdamW(optimizer_grouped_parameters)
                     ctx.scheduler = get_linear_schedule_with_warmup(
                                     ctx.optimizer, 
                                     num_warmup_steps=0.06 * ctx.cfg.train.local_update_steps * ctx.cfg.federate.total_round_num, 

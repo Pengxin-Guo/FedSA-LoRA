@@ -11,7 +11,7 @@ federate:
   share_local_model: True
   online_aggr: False
 personalization: 
-  local_param: ['vera_lambda_b', 'classifier']
+  local_param: ['lora_B', 'classifier']
 data:
   root: data/
   type: 'mnli@glue'
