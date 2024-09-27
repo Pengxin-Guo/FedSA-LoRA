@@ -56,7 +56,7 @@ class GLUETrainer(GeneralTorchTrainer):
                     other_params = [param for name, param in ctx.model.named_parameters() if "vera" not in name and param.requires_grad]
                     optimizer_grouped_parameters = [
                         {'params': vera_params, 'lr': ctx.cfg.train.optimizer.lr},
-                        {'params': other_params, 'lr': ctx.cfg.train.optimizer.lr_c}
+                        {'params': other_params, 'lr': ctx.cfg.train.vera.lr_c}
                     ]
                     from transformers import AdamW, get_linear_schedule_with_warmup
                     ctx.optimizer = AdamW(optimizer_grouped_parameters, no_deprecation_warning=True)

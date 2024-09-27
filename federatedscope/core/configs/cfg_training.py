@@ -37,7 +37,9 @@ def extend_training_cfg(cfg):
     cfg.train.optimizer = CN(new_allowed=True)
     cfg.train.optimizer.type = 'SGD'
     cfg.train.optimizer.lr = 0.1
-    cfg.train.optimizer.lr_c = 0.01   # added by me, for VeRA, introduce separate learning rates for the classification head and the adapted layers
+    
+    cfg.train.vera = CN(new_allowed=True)  # added by me, for VeRA, introduce separate learning rates for the classification head and the adapted layers
+    cfg.train.vera.lr_c = 0.01   # added by me, for VeRA, introduce separate learning rates for the classification head and the adapted layers
 
     # you can add new arguments 'aa' by `cfg.train.scheduler.aa = 'bb'`
     cfg.train.scheduler = CN(new_allowed=True)

@@ -51,9 +51,9 @@ app_requires = [
 ]
 
 llm_requires = [
-    'tokenizers==0.13.3',
+    'tokenizers==0.19.1',
     'transformers==4.42.3',
-    'accelerate==0.20.3',
+    'accelerate==0.33.0',
     'peft==0.12.0',
     'sentencepiece==0.1.99',
     'datasets==2.20.0',
