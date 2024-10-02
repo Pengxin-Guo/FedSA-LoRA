@@ -1,6 +1,6 @@
 # FedSA-LoRA
 
-This is a offcial PyTorch implementation of Federated Share-A Low-Rank Adaptation (**FedSA-LoRA**).
+This is the offcial PyTorch implementation of Federated Share-A Low-Rank Adaptation (**FedSA-LoRA**).
 
 ## Installation
 
